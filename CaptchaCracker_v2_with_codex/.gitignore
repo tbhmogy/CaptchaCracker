@@ -1,0 +1,9 @@
+.env
+.venv
+.uv
+__pycache__/
+model_checkpoints/
+!model_checkpoints/.gitkeep
+*.h5
+*.ckpt
+logs/

@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  trainer:
+    build: .
+    container_name: captcha-trainer
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+      - ./model_checkpoints:/app/model_checkpoints
+      - ./documents/training_logs:/app/documents/training_logs
+    command: ["uv", "run", "python", "-m", "captcha_cracker_v2.train"]
+  validator:
+    build: .
+    container_name: captcha-validator
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+      - ./model_checkpoints:/app/model_checkpoints
+      - ./documents/training_logs:/app/documents/training_logs
+    command: ["uv", "run", "python", "-m", "captcha_cracker_v2.validate"]
